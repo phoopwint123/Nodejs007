@@ -43,7 +43,7 @@ router.post('/add',checkAuth,function (req,res) {
 })
 
 router.get('/:id',checkAuth,function (req,res) {
-  Post.findById(req.params.id,function (err,rtn) {
+  Post.findById(req.params.id).populate('author').exec(function (err,rtn) {
     if(err){
       res.status(500).json({
         message : "Internal Server Error",
